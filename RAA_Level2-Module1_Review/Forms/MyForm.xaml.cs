@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 
 namespace RAA_Level2_Module1_Review
@@ -24,6 +25,32 @@ namespace RAA_Level2_Module1_Review
         public MyForm()
         {
             InitializeComponent();
+        }
+
+        private void BtnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog selectFile = new OpenFileDialog();
+            selectFile.Multiselect = false;
+            //selectFile.InitialDirectory = @"C:\";
+            selectFile.RestoreDirectory = true;
+            selectFile.Filter = "*.csv file (*.csv) |*.csv";
+
+            if (selectFile.ShowDialog() == true)
+            {
+                TbxSelect.Text = selectFile.FileName;
+            }
+        }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
         }
     }
 }
